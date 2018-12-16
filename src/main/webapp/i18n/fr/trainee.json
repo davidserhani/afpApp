@@ -1,0 +1,22 @@
+{
+    "afpappApp": {
+        "trainee": {
+            "home": {
+                "title": "Trainees",
+                "createLabel": "Créer un nouveau Trainee",
+                "createOrEditLabel": "Créer ou éditer un Trainee"
+            },
+            "created": "Un nouveau Trainee a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Trainee avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Trainee avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Trainee {{ id }} ?"
+            },
+            "detail": {
+                "title": "Trainee"
+            },
+            "lastName": "Last Name",
+            "firstName": "First Name"
+        }
+    }
+}

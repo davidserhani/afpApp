@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "start",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "end",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20181216125511",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "training",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

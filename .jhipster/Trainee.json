@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20181216125310",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "trainee",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

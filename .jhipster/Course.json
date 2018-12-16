@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "title",
+            "fieldType": "Title",
+            "fieldValues": "CDI,DL,SYSADMIN"
+        }
+    ],
+    "changelogDate": "20181216124953",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "course",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

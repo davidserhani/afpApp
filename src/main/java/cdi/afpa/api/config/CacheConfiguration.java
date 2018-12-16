@@ -38,6 +38,10 @@ public class CacheConfiguration {
             cm.createCache(cdi.afpa.api.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(cdi.afpa.api.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(cdi.afpa.api.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(cdi.afpa.api.domain.Course.class.getName(), jcacheConfiguration);
+            cm.createCache(cdi.afpa.api.domain.Teacher.class.getName(), jcacheConfiguration);
+            cm.createCache(cdi.afpa.api.domain.Trainee.class.getName(), jcacheConfiguration);
+            cm.createCache(cdi.afpa.api.domain.Training.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
