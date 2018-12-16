@@ -37,7 +37,7 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:postgresql://localhost:5432/afpapp
-        username: afpapp
+        username: postgres
         password:
         hikari:
             auto-commit: false
@@ -82,10 +82,10 @@ jhipster:
             max-entries: 100 # Number of objects in each cache entry
     # CORS is only enabled by default with the "dev" profile, so BrowserSync can access the API
     cors:
-        allowed-origins: "*"
-        allowed-methods: "*"
-        allowed-headers: "*"
-        exposed-headers: "Authorization,Link,X-Total-Count"
+        allowed-origins: '*'
+        allowed-methods: '*'
+        allowed-headers: '*'
+        exposed-headers: 'Authorization,Link,X-Total-Count'
         allow-credentials: true
         max-age: 1800
     mail: # specific JHipster mail property, for standard properties see MailProperties
@@ -105,7 +105,6 @@ jhipster:
             host: localhost
             port: 5000
             queue-size: 512
-
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class
