@@ -1,7 +1,28 @@
 {
     "fluentMethods": true,
     "clientRootFolder": "",
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "course",
+            "otherEntityName": "course",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "trainees",
+            "otherEntityName": "trainee",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "training"
+        },
+        {
+            "relationshipName": "teachers",
+            "otherEntityName": "teacher",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "trainings"
+        }
+    ],
     "fields": [
         {
             "fieldName": "start",

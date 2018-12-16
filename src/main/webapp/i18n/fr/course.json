@@ -16,7 +16,8 @@
                 "title": "Course"
             },
             "description": "Description",
-            "title": "Title"
+            "title": "Title",
+            "trainings": "Trainings"
         }
     }
 }

@@ -28,7 +28,13 @@ public interface TrainingService {
      */
     Page<TrainingDTO> findAll(Pageable pageable);
 
-
+    /**
+     * Get all the Training with eager load of many-to-many relationships.
+     *
+     * @return the list of entities
+     */
+    Page<TrainingDTO> findAllWithEagerRelationships(Pageable pageable);
+    
     /**
      * Get the "id" training.
      *

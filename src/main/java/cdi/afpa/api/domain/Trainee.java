@@ -1,5 +1,6 @@
 package cdi.afpa.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -28,6 +29,10 @@ public class Trainee implements Serializable {
 
     @Column(name = "first_name")
     private String firstName;
+
+    @ManyToOne
+    @JsonIgnoreProperties("")
+    private Training training;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -62,6 +67,19 @@ public class Trainee implements Serializable {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public Training getTraining() {
+        return training;
+    }
+
+    public Trainee training(Training training) {
+        this.training = training;
+        return this;
+    }
+
+    public void setTraining(Training training) {
+        this.training = training;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

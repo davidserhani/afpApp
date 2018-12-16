@@ -1,11 +1,14 @@
 package cdi.afpa.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import cdi.afpa.api.domain.enumeration.Title;
@@ -32,6 +35,9 @@ public class Course implements Serializable {
     @Column(name = "title")
     private Title title;
 
+    @OneToMany(mappedBy = "course")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Training> trainings = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -65,6 +71,31 @@ public class Course implements Serializable {
 
     public void setTitle(Title title) {
         this.title = title;
+    }
+
+    public Set<Training> getTrainings() {
+        return trainings;
+    }
+
+    public Course trainings(Set<Training> trainings) {
+        this.trainings = trainings;
+        return this;
+    }
+
+    public Course addTrainings(Training training) {
+        this.trainings.add(training);
+        training.setCourse(this);
+        return this;
+    }
+
+    public Course removeTrainings(Training training) {
+        this.trainings.remove(training);
+        training.setCourse(null);
+        return this;
+    }
+
+    public void setTrainings(Set<Training> trainings) {
+        this.trainings = trainings;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

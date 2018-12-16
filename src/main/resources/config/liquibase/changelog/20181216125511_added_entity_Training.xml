@@ -29,8 +29,23 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="course_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+        
+        <createTable tableName="training_teachers">
+            <column name="teachers_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trainings_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="trainings_id, teachers_id" tableName="training_teachers"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

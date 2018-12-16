@@ -42,6 +42,10 @@ public class CacheConfiguration {
             cm.createCache(cdi.afpa.api.domain.Teacher.class.getName(), jcacheConfiguration);
             cm.createCache(cdi.afpa.api.domain.Trainee.class.getName(), jcacheConfiguration);
             cm.createCache(cdi.afpa.api.domain.Training.class.getName(), jcacheConfiguration);
+            cm.createCache(cdi.afpa.api.domain.Course.class.getName() + ".trainings", jcacheConfiguration);
+            cm.createCache(cdi.afpa.api.domain.Teacher.class.getName() + ".trainings", jcacheConfiguration);
+            cm.createCache(cdi.afpa.api.domain.Training.class.getName() + ".trainees", jcacheConfiguration);
+            cm.createCache(cdi.afpa.api.domain.Training.class.getName() + ".teachers", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

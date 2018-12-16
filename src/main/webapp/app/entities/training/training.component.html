@@ -17,6 +17,7 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="start"><span jhiTranslate="afpappApp.training.start">Start</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="end"><span jhiTranslate="afpappApp.training.end">End</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="courseId"><span jhiTranslate="afpappApp.training.course">Course</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -25,6 +26,11 @@
                 <td><a [routerLink]="['/training', training.id, 'view' ]">{{training.id}}</a></td>
                 <td>{{training.start | date:'mediumDate'}}</td>
                 <td>{{training.end | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="training.courseId">
+                        <a [routerLink]="['../course', training.courseId , 'view' ]" >{{training.courseId}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

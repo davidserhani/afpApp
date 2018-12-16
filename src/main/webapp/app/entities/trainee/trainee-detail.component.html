@@ -13,6 +13,12 @@
                 <dd>
                     <span>{{trainee.firstName}}</span>
                 </dd>
+                <dt><span jhiTranslate="afpappApp.trainee.training">Training</span></dt>
+                <dd>
+                    <div *ngIf="trainee.trainingId">
+                        <a [routerLink]="['/training', trainee.trainingId, 'view']">{{trainee.trainingId}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

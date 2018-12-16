@@ -2,6 +2,8 @@ package cdi.afpa.api.service.dto;
 
 import java.time.LocalDate;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -14,6 +16,10 @@ public class TrainingDTO implements Serializable {
     private LocalDate start;
 
     private LocalDate end;
+
+    private Long courseId;
+
+    private Set<TeacherDTO> teachers = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -37,6 +43,22 @@ public class TrainingDTO implements Serializable {
 
     public void setEnd(LocalDate end) {
         this.end = end;
+    }
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
+
+    public Set<TeacherDTO> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(Set<TeacherDTO> teachers) {
+        this.teachers = teachers;
     }
 
     @Override
@@ -66,6 +88,7 @@ public class TrainingDTO implements Serializable {
             "id=" + getId() +
             ", start='" + getStart() + "'" +
             ", end='" + getEnd() + "'" +
+            ", course=" + getCourseId() +
             "}";
     }
 }

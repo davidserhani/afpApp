@@ -13,6 +13,18 @@
                 <dd>
                     <span>{{training.end}}</span>
                 </dd>
+                <dt><span jhiTranslate="afpappApp.training.course">Course</span></dt>
+                <dd>
+                    <div *ngIf="training.courseId">
+                        <a [routerLink]="['/course', training.courseId, 'view']">{{training.courseId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="afpappApp.training.teachers">Teachers</span></dt>
+                <dd>
+                    <span *ngFor="let teachers of training.teachers; let last = last">
+                        <a [routerLink]="['/teacher', teachers?.id, 'view' ]">{{teachers.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
             </dl>
 
             <button type="submit"

@@ -17,6 +17,7 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="lastName"><span jhiTranslate="afpappApp.trainee.lastName">Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="firstName"><span jhiTranslate="afpappApp.trainee.firstName">First Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="trainingId"><span jhiTranslate="afpappApp.trainee.training">Training</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -25,6 +26,11 @@
                 <td><a [routerLink]="['/trainee', trainee.id, 'view' ]">{{trainee.id}}</a></td>
                 <td>{{trainee.lastName}}</td>
                 <td>{{trainee.firstName}}</td>
+                <td>
+                    <div *ngIf="trainee.trainingId">
+                        <a [routerLink]="['../training', trainee.trainingId , 'view' ]" >{{trainee.trainingId}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

@@ -12,9 +12,12 @@ import cdi.afpa.api.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -27,12 +30,14 @@ import org.springframework.validation.Validator;
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 
 import static cdi.afpa.api.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -54,8 +59,14 @@ public class TrainingResourceIntTest {
     @Autowired
     private TrainingRepository trainingRepository;
 
+    @Mock
+    private TrainingRepository trainingRepositoryMock;
+
     @Autowired
     private TrainingMapper trainingMapper;
+
+    @Mock
+    private TrainingService trainingServiceMock;
 
     @Autowired
     private TrainingService trainingService;
@@ -164,6 +175,39 @@ public class TrainingResourceIntTest {
             .andExpect(jsonPath("$.[*].end").value(hasItem(DEFAULT_END.toString())));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllTrainingsWithEagerRelationshipsIsEnabled() throws Exception {
+        TrainingResource trainingResource = new TrainingResource(trainingServiceMock);
+        when(trainingServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        MockMvc restTrainingMockMvc = MockMvcBuilders.standaloneSetup(trainingResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restTrainingMockMvc.perform(get("/api/trainings?eagerload=true"))
+        .andExpect(status().isOk());
+
+        verify(trainingServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllTrainingsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        TrainingResource trainingResource = new TrainingResource(trainingServiceMock);
+            when(trainingServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            MockMvc restTrainingMockMvc = MockMvcBuilders.standaloneSetup(trainingResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restTrainingMockMvc.perform(get("/api/trainings?eagerload=true"))
+        .andExpect(status().isOk());
+
+            verify(trainingServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getTraining() throws Exception {

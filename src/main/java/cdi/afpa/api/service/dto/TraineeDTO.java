@@ -14,6 +14,8 @@ public class TraineeDTO implements Serializable {
 
     private String firstName;
 
+    private Long trainingId;
+
     public Long getId() {
         return id;
     }
@@ -36,6 +38,14 @@ public class TraineeDTO implements Serializable {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public Long getTrainingId() {
+        return trainingId;
+    }
+
+    public void setTrainingId(Long trainingId) {
+        this.trainingId = trainingId;
     }
 
     @Override
@@ -65,6 +75,7 @@ public class TraineeDTO implements Serializable {
             "id=" + getId() +
             ", lastName='" + getLastName() + "'" +
             ", firstName='" + getFirstName() + "'" +
+            ", training=" + getTrainingId() +
             "}";
     }
 }

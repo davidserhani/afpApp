@@ -12,6 +12,8 @@ import org.mapstruct.*;
 public interface TeacherMapper extends EntityMapper<TeacherDTO, Teacher> {
 
 
+    @Mapping(target = "trainings", ignore = true)
+    Teacher toEntity(TeacherDTO teacherDTO);
 
     default Teacher fromId(Long id) {
         if (id == null) {

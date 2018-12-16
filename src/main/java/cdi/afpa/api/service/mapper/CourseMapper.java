@@ -12,6 +12,8 @@ import org.mapstruct.*;
 public interface CourseMapper extends EntityMapper<CourseDTO, Course> {
 
 
+    @Mapping(target = "trainings", ignore = true)
+    Course toEntity(CourseDTO courseDTO);
 
     default Course fromId(Long id) {
         if (id == null) {

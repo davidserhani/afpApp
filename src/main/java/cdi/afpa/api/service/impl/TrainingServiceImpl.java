@@ -62,6 +62,15 @@ public class TrainingServiceImpl implements TrainingService {
             .map(trainingMapper::toDto);
     }
 
+    /**
+     * Get all the Training with eager load of many-to-many relationships.
+     *
+     * @return the list of entities
+     */
+    public Page<TrainingDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return trainingRepository.findAllWithEagerRelationships(pageable).map(trainingMapper::toDto);
+    }
+    
 
     /**
      * Get one training by id.
@@ -73,7 +82,7 @@ public class TrainingServiceImpl implements TrainingService {
     @Transactional(readOnly = true)
     public Optional<TrainingDTO> findOne(Long id) {
         log.debug("Request to get Training : {}", id);
-        return trainingRepository.findById(id)
+        return trainingRepository.findOneWithEagerRelationships(id)
             .map(trainingMapper::toDto);
     }
 

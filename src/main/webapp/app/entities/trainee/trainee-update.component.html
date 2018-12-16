@@ -20,6 +20,13 @@
                         [(ngModel)]="trainee.firstName" />
                 </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="afpappApp.trainee.training" for="field_training">Training</label>
+                    <select class="form-control" id="field_training" name="training" [(ngModel)]="trainee.trainingId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="trainingOption.id" *ngFor="let trainingOption of trainings; trackBy: trackTrainingById">{{trainingOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

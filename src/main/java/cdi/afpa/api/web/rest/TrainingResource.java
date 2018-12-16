@@ -85,14 +85,20 @@ public class TrainingResource {
      * GET  /trainings : get all the trainings.
      *
      * @param pageable the pagination information
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @return the ResponseEntity with status 200 (OK) and the list of trainings in body
      */
     @GetMapping("/trainings")
     @Timed
-    public ResponseEntity<List<TrainingDTO>> getAllTrainings(Pageable pageable) {
+    public ResponseEntity<List<TrainingDTO>> getAllTrainings(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of Trainings");
-        Page<TrainingDTO> page = trainingService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/trainings");
+        Page<TrainingDTO> page;
+        if (eagerload) {
+            page = trainingService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = trainingService.findAll(pageable);
+        }
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, String.format("/api/trainings?eagerload=%b", eagerload));
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 

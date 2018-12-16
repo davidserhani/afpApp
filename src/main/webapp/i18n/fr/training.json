@@ -16,7 +16,10 @@
                 "title": "Training"
             },
             "start": "Start",
-            "end": "End"
+            "end": "End",
+            "course": "Course",
+            "trainees": "Trainees",
+            "teachers": "Teachers"
         }
     }
 }

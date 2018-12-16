@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { JhiAlertService } from 'ng-jhipster';
 
 import { ITeacher } from 'app/shared/model/teacher.model';
 import { TeacherService } from './teacher.service';
+import { ITraining } from 'app/shared/model/training.model';
+import { TrainingService } from 'app/entities/training';
 
 @Component({
     selector: 'jhi-teacher-update',
@@ -14,13 +17,26 @@ export class TeacherUpdateComponent implements OnInit {
     teacher: ITeacher;
     isSaving: boolean;
 
-    constructor(protected teacherService: TeacherService, protected activatedRoute: ActivatedRoute) {}
+    trainings: ITraining[];
+
+    constructor(
+        protected jhiAlertService: JhiAlertService,
+        protected teacherService: TeacherService,
+        protected trainingService: TrainingService,
+        protected activatedRoute: ActivatedRoute
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ teacher }) => {
             this.teacher = teacher;
         });
+        this.trainingService.query().subscribe(
+            (res: HttpResponse<ITraining[]>) => {
+                this.trainings = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
     }
 
     previousState() {
@@ -47,5 +63,24 @@ export class TeacherUpdateComponent implements OnInit {
 
     protected onSaveError() {
         this.isSaving = false;
+    }
+
+    protected onError(errorMessage: string) {
+        this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    trackTrainingById(index: number, item: ITraining) {
+        return item.id;
+    }
+
+    getSelected(selectedVals: Array<any>, option: any) {
+        if (selectedVals) {
+            for (let i = 0; i < selectedVals.length; i++) {
+                if (option.id === selectedVals[i].id) {
+                    return selectedVals[i];
+                }
+            }
+        }
+        return option;
     }
 }
